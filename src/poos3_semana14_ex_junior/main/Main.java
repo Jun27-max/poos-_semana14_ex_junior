@@ -1,5 +1,8 @@
 package poos3_semana14_ex_junior.main;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 import java.util.TreeSet;
 
@@ -13,6 +16,8 @@ public class Main {
 		
 		Locale.setDefault(Locale.US);
 		
+		List<Produto> list = new ArrayList<>();
+		
 		TreeSet<Produto> t = new TreeSet<>(new Compara());
 		
 		t.add(new Produto(4, "Palmolive", 2.00));
@@ -21,8 +26,31 @@ public class Main {
 		t.add(new Produto(2, "Rexona", 3.00));
 		t.add(new Produto(1, "Francis", 4.00));
 		t.add(new Produto(5, "Natura", 5.00));
+		t.add(new Produto(5, "Sabão de Pedra", 5.00));
+		t.add(new Produto(5, "Tenaz", 5.00));
+		t.add(new Produto(5, "Catinga", 5.00));
 		
 		t.forEach(System.out::println);
+		
+		
+		list.addAll(t);
+		
+		System.out.println();
+		System.out.println("Por ordem decrescente: ");
+		list.sort(Comparator.comparing(Produto::getCodigo).reversed());
+		list.forEach(System.out::println);
+		
+		System.out.println();
+		System.out.println("Por Código e nome: ");
+		list.sort(Comparator.comparing(Produto::getCodigo).thenComparing(Produto::getNome));
+		list.forEach(System.out::println);
+		
+		System.out.println();
+		System.out.println("Por Código e Preço: ");
+		list.sort(Comparator.comparing(Produto::getCodigo).thenComparing(Produto::getPreco));
+		list.forEach(System.out::println);
+		
+		
 
 	}
 
